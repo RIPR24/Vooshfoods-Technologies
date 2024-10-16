@@ -144,7 +144,11 @@ const SignupCon = () => {
         <button
           disabled={disable}
           className={disable ? "disb" : ""}
-          onClick={signup}
+          onClick={() => {
+            if (!disable) {
+              signup();
+            }
+          }}
         >
           Signup
         </button>
@@ -163,7 +167,11 @@ const SignupCon = () => {
         <button
           disabled={disable}
           className={disable ? "disb" : ""}
-          onClick={google}
+          onClick={() => {
+            if (!disable) {
+              google();
+            }
+          }}
         >
           Signup with Google
         </button>

@@ -107,7 +107,11 @@ const LoginCon = () => {
         <button
           disabled={disable}
           className={disable ? "disb" : ""}
-          onClick={login}
+          onClick={() => {
+            if (!disable) {
+              login();
+            }
+          }}
         >
           Login
         </button>
@@ -126,7 +130,11 @@ const LoginCon = () => {
         <button
           disabled={disable}
           className={disable ? "disb" : ""}
-          onClick={google}
+          onClick={() => {
+            if (!disable) {
+              google();
+            }
+          }}
         >
           Login with Google
         </button>
