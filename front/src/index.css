@@ -206,6 +206,12 @@ button {
   filter: drop-shadow(0 0 1px #aaa);
 }
 
+.disb {
+  background-color: #749ac9;
+  cursor: not-allowed;
+  color: #5c5b5b;
+}
+
 @media (max-width: 600px) {
   .add-btn {
     width: 90%;

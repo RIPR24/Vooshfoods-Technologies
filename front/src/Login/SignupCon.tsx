@@ -14,6 +14,7 @@ type info = {
 const SignupCon = () => {
   const navigate = useNavigate();
   const { apiurl } = useContext(VooshContext);
+  const [disable, setDisable] = useState(false);
   const [prob, setProb] = useState("");
   const [info, setInfo] = useState<info>({
     fname: "",
@@ -136,7 +137,13 @@ const SignupCon = () => {
           value={info.cpass}
         />
         <p style={{ color: "red" }}>{prob}</p>
-        <button onClick={signup}>Signup</button>
+        <button
+          disabled={disable}
+          className={disable ? "disb" : ""}
+          onClick={signup}
+        >
+          Signup
+        </button>
         <p>
           Don't have an account?{" "}
           <span
@@ -149,7 +156,13 @@ const SignupCon = () => {
             Signup
           </span>
         </p>
-        <button onClick={google}>Signup with Google</button>
+        <button
+          disabled={disable}
+          className={disable ? "disb" : ""}
+          onClick={google}
+        >
+          Signup with Google
+        </button>
       </div>
     </div>
   );

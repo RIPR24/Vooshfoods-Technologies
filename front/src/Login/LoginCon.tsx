@@ -11,6 +11,7 @@ type info = {
 const LoginCon = () => {
   const navigate = useNavigate();
   const { apiurl, setUser } = useContext(VooshContext);
+  const [disable, setDisable] = useState(false);
   const [prob, setProb] = useState("");
   const [info, setInfo] = useState<info>({
     email: "",
@@ -20,6 +21,7 @@ const LoginCon = () => {
   const responseGoogle = async (authRes: any) => {
     try {
       if (authRes.code) {
+        setDisable(true);
         const res = await fetch(apiurl + "/user/glogin", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -28,6 +30,7 @@ const LoginCon = () => {
           }),
         });
         const data = await res.json();
+        setDisable(false);
         if (data.status === "success") {
           if (setUser) {
             setUser(data.user);
@@ -53,6 +56,7 @@ const LoginCon = () => {
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     //email Validation
     if (reg.test(info.email)) {
+      setDisable(true);
       const res = await fetch(apiurl + "/user/login", {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -62,6 +66,7 @@ const LoginCon = () => {
         }),
       });
       const data = await res.json();
+      setDisable(false);
       if (data.status === "success") {
         if (setUser) {
           setUser(data.user);
@@ -99,7 +104,13 @@ const LoginCon = () => {
           id="pass"
         />
         <p style={{ color: "red" }}>{prob}</p>
-        <button onClick={login}>Login</button>
+        <button
+          disabled={disable}
+          className={disable ? "disb" : ""}
+          onClick={login}
+        >
+          Login
+        </button>
         <p>
           Don't have an account?{" "}
           <span
@@ -112,7 +123,13 @@ const LoginCon = () => {
             Signup
           </span>
         </p>
-        <button onClick={google}>Login with Google</button>
+        <button
+          disabled={disable}
+          className={disable ? "disb" : ""}
+          onClick={google}
+        >
+          Login with Google
+        </button>
       </div>
     </div>
   );
