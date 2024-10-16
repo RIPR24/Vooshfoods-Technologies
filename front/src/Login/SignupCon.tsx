@@ -27,6 +27,7 @@ const SignupCon = () => {
   const responseGoogle = async (authRes: any) => {
     try {
       if (authRes.code) {
+        setDisable(true);
         const res = await fetch(apiurl + "/user/gsignup", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -35,6 +36,7 @@ const SignupCon = () => {
           }),
         });
         const data = await res.json();
+        setDisable(false);
         if (data.status === "success") {
           navigate("/login");
         } else {
@@ -60,6 +62,7 @@ const SignupCon = () => {
       if (reg.test(info.email)) {
         //email Validation
         if (info.pass === info.cpass) {
+          setDisable(true);
           const res = await fetch(apiurl + "/user/signup", {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -71,6 +74,7 @@ const SignupCon = () => {
             }),
           });
           const data = await res.json();
+          setDisable(false);
           if (data.status === "success") {
             navigate("/login");
           } else {
