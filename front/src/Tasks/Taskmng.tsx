@@ -45,7 +45,6 @@ const Taskmng = ({ setFilteredtasks, setTasks }: props) => {
             title,
             description,
             due,
-            userid: user?._id,
           }),
         });
         const data = await res.json();
@@ -79,7 +78,6 @@ const Taskmng = ({ setFilteredtasks, setTasks }: props) => {
             description,
             due,
             type: 1,
-            userid: user?._id,
           }),
         });
         const data = await res.json();

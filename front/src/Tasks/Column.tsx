@@ -44,7 +44,6 @@ const Column = (props: props) => {
           body: JSON.stringify({
             _id: cid,
             type,
-            userid: user?._id,
           }),
         });
         const data = await res.json();

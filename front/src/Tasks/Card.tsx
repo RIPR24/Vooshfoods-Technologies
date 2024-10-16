@@ -57,7 +57,6 @@ const Card = ({ obj, setFilteredtasks, setTasks }: props) => {
         },
         body: JSON.stringify({
           _id: obj._id,
-          userid: user?._id,
         }),
       });
       const data = await res.json();
