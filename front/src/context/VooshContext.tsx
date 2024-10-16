@@ -53,7 +53,7 @@ const VooshContextProvider = ({ children }: props) => {
     stat: false,
     obj: null,
   });
-  const apiurl = "http://localhost:8000";
+  const apiurl = "https://vooshfoods-demoapp.onrender.com";
 
   return (
     <VooshContext.Provider
