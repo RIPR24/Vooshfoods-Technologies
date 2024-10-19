@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { VooshContext } from "../context/VooshContext";
 import { useNavigate } from "react-router-dom";
-import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 
 type info = {
   fname: string;
@@ -38,6 +38,7 @@ const SignupCon = () => {
         const data = await res.json();
         setDisable(false);
         if (data.status === "success") {
+          googleLogout();
           navigate("/login");
         } else {
           setProb(data.status);

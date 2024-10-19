@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { VooshContext } from "../context/VooshContext";
-import { useGoogleLogin } from "@react-oauth/google";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 type info = {
   email: string;
@@ -35,6 +35,7 @@ const LoginCon = () => {
           if (setUser) {
             setUser(data.user);
           }
+          googleLogout();
           navigate("/tasks");
         } else {
           setProb(data.status);
